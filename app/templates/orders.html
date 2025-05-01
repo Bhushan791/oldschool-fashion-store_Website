@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<section class="orders-container">
+    <h2 class="page-title">Your Order History</h2>
+
+    {% if orders %}
+    <div class="orders-list">
+        {% for order in orders %}
+        <div class="order-card">
+            <div class="order-header">
+                <h3 class="order-title">Order #{{ order.id }} - <span class="order-status">{{ order.status }}</span></h3>
+                <p class="order-date">Placed on: {{ order.created_at }}</p>
+            </div>
+            <div class="order-details">
+                <p class="order-info"><strong>Name:</strong> {{ order.name }}</p>
+                <p class="order-info"><strong>Address:</strong> {{ order.address }}</p>
+                <p class="order-total"><strong>Total:</strong> ${{ "%.2f"|format(order.total_price) }}</p>
+            </div>
+            <div class="order-items">
+                <h4 class="items-title">Items:</h4>
+                <ul class="items-list">
+                    {% for item in order['items'] %}
+                    <li class="order-item">
+                        Product ID: {{ item.product_id }}, 
+                        Quantity: {{ item.quantity }}, 
+                        Price: ${{ "%.2f"|format(item.price) }}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            {% if order.status == 'Pending' %}
+            <div class="order-actions">
+                <form method="POST" action="{{ url_for('main.cancel_order', order_id=order.id) }}" class="cancel-form">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <button type="submit" class="btn btn-danger">Cancel Order</button>
+                </form>
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="no-orders-message">You have no orders.</p>
+    {% endif %}
+</section>
+{% endblock %}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>OLDSCHOOL Fashion</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <header class="main-header">
+        <h1 class="site-logo"><a href="{{ url_for('main.index') }}">OLDSCHOOL</a></h1>
+        <nav class="main-nav">
+            <a href="{{ url_for('main.index') }}" class="nav-link">Home</a>
+            <a href="{{ url_for('main.cart') }}" class="nav-link">Cart</a>
+
+            {% if session.get('user_id') %}
+                <a href="{{ url_for('main.profile') }}" class="nav-link">Profile</a>
+                <a href="{{ url_for('main.order_history') }}" class="nav-link">Order History</a>  <!-- Added here -->
+                <a href="{{ url_for('main.logout') }}" class="nav-link">Logout</a>
+            {% else %}
+                <a href="{{ url_for('main.login') }}" class="nav-link">Login</a>
+                <a href="{{ url_for('main.signup') }}" class="nav-link">Sign Up</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="main-footer">
+        <p>© 2025 OLDSCHOOL Fashion</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

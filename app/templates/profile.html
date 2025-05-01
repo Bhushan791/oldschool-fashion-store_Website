@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="profile-container">
+    <h2 class="profile-heading">👤 User Profile</h2>
+
+    <div class="user-box">
+        <p class= "usermail"><strong>Email:</strong> {{ email }}</p>
+        <div id="welcome-message" class="welcome-message"></div>
+    </div>
+
+    <div class="brand-message">
+        <p>At <strong>OLDSCHOOL</strong> 👗, we celebrate timeless styles with a modern twist — where every piece tells a story from the past, styled for today. 💫</p>
+
+        <p>Let’s make today beautifully vintage. 🛍️💕</p>
+
+        <p>Explore our latest collections and find your next favorite outfit! 🌟</p>
+
+        <p class="shop-tag">Happy shopping! 🛒✨</p>
+    </div>
+</div>
+
+<!-- Script to personalize greeting -->
+<script>
+    const email = "{{ email }}";
+    if (email) {
+        const namePart = email.split('@')[0];
+        const userName = namePart.charAt(0).toUpperCase() + namePart.slice(1);
+        const message = `👋 Welcome back, ${userName}! We're thrilled to see you again. ✨`;
+        document.getElementById('welcome-message').textContent = message;
+    }
+</script>
+{% endblock %}

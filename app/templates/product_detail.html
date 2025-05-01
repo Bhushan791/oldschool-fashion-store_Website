@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<section class="product-detail">
+    <h2 class="page-title">{{ product.name }}</h2>
+    <div class="product-content">
+        <div class="product-image-container">
+            <img src="{{ url_for('static', filename='uploads/products/' ~ product.image) }}" 
+                alt="{{ product.name }}" class="product-detail-image" />
+        </div>
+        <div class="product-info">
+            <p class="product-description">{{ product.description }}</p>
+            <p class="product-price">Price: ${{ "%.2f"|format(product.price) }}</p>
+
+            <form action="{{ url_for('main.add_to_cart', product_id=product.id) }}" 
+                  method="post" class="add-to-cart-form">
+                <div class="form-group">
+                    <input type="number" name="quantity" value="1" min="1" class="quantity-input" />
+                    <button type="submit" class="btn btn-primary">Add to Cart</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <a href="{{ url_for('main.index') }}" class="btn btn-secondary">Back to Products</a>
+</section>
+{% endblock %}

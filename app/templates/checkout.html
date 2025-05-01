@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<section class="checkout-container">
+    <h2 class="page-title">Checkout</h2>
+
+    <form method="POST" action="{{ url_for('main.checkout') }}" class="checkout-form">
+        {{ form.hidden_tag() }}
+
+        <div class="form-group">
+            {{ form.name.label(class="form-label") }}
+            {{ form.name(size=40, class="form-input") }}
+        </div>
+        <div class="form-group">
+            {{ form.address.label(class="form-label") }}
+            {{ form.address(size=60, class="form-input address-input") }}
+        </div>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-primary") }}
+        </div>
+    </form>
+
+    <div class="checkout-actions">
+        <a href="{{ url_for('main.cart') }}" class="btn btn-secondary">Back to Cart</a>
+    </div>
+</section>
+{% endblock %}

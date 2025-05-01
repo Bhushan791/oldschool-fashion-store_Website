@@ -1,0 +1,52 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<section class="admin-panel">
+    <h2 class="page-title">Admin Panel - Product Management</h2>
+
+    <div class="admin-actions" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <a href="{{ url_for('admin.add') }}" class="btn btn-primary">Add New Product</a>
+        <a href="{{ url_for('admin.admin_orders') }}" class="btn btn-secondary">View Orders Summary</a>
+    </div>
+
+    <div class="table-container">
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Image</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                <tr class="product-row">
+                    <td class="product-name">{{ product.name }}</td>
+                    <td class="product-description">{{ product.description }}</td>
+                    <td class="product-price">${{ "%.2f"|format(product.price) }}</td>
+                    <td class="product-image">
+                        {% if product.image %}
+                        <img src="{{ url_for('static', filename='uploads/products/' ~ product.image) }}" 
+                            alt="{{ product.name }}" class="admin-product-image" />
+                        {% else %}
+                        <span class="no-image">No Image</span>
+                        {% endif %}
+                    </td>
+                    <td class="product-actions">
+                        <a href="{{ url_for('admin.edit', product_id=product.id) }}" class="btn btn-small btn-edit">Edit</a>
+                        <a href="{{ url_for('admin.delete', product_id=product.id) }}" 
+                           onclick="return confirm('Are you sure?')" class="btn btn-small btn-danger">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="admin-footer" style="margin-top: 2rem;">
+        <a href="{{ url_for('main.index') }}" class="btn btn-secondary">Back to Home</a>
+    </div>
+</section>
+{% endblock %}

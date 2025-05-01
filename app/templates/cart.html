@@ -1,0 +1,61 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<section class="cart-container">
+    <h2 class="page-title">Your Cart</h2>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class="flashes">
+        {% for message in messages %}
+        <li class="flash-message">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+
+    {% if products %}
+    <div class="cart-content">
+        <div class="cart-table-container">
+            <table class="cart-table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Subtotal</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for p in products %}
+                    <tr class="cart-item">
+                        <td class="product-name">{{ p.name }}</td>
+                        <td class="product-quantity">{{ p.quantity }}</td>
+                        <td class="product-price">${{ "%.2f"|format(p.price) }}</td>
+                        <td class="product-subtotal">${{ "%.2f"|format(p.subtotal) }}</td>
+                        <td class="product-action">
+                            <a href="{{ url_for('main.remove_from_cart', product_id=p.id) }}" class="remove-link">Remove</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="cart-summary">
+            <h3 class="cart-total">Total: ${{ "%.2f"|format(total) }}</h3>
+            <div class="cart-actions">
+                <a href="{{ url_for('main.checkout') }}" class="btn btn-primary">Proceed to Checkout</a>
+                <a href="{{ url_for('main.index') }}" class="btn btn-secondary">Continue Shopping</a>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="empty-cart">
+        <p class="empty-cart-message">Your cart is empty.</p>
+        <a href="{{ url_for('main.index') }}" class="btn btn-primary">Start Shopping</a>
+    </div>
+    {% endif %}
+</section>
+{% endblock %}

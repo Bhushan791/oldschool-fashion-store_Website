@@ -1,28 +1,9 @@
-# # Configuration file for the web application
+import os
 
-# # Database configuration
-# DATABASE = {
-#     'host': 'localhost',
-#     'port': 5432,
-#     'user': 'your_username',
-#     'password': 'your_password',
-#     'database': 'your_database_name'
-# }
-
-# # Application settings
-# APP_SETTINGS = {
-#     'debug': True,
-#     'secret_key': 'your_secret_key',
-#     'allowed_hosts': ['localhost', '127.0.0.1']
-# }
-
-# # API keys
-# API_KEYS = {
-#     'example_service': 'your_api_key_here'
-# }
-
-SECRET_KEY = 'supersecretkey'
-MYSQL_HOST = 'localhost'
-MYSQL_USER = 'root'
-MYSQL_PASSWORD = 'bhushanbhatta'
-MYSQL_DATABASE = 'testdb'
+class Config:
+    SECRET_KEY = os.getenv('SECRET_KEY', 'devkey')
+    MYSQL_HOST = os.getenv('MYSQL_HOST')
+    MYSQL_USER = os.getenv('MYSQL_USER')
+    MYSQL_PASSWORD = os.getenv('MYSQL_PASSWORD')
+    MYSQL_DB = os.getenv('MYSQL_DB')
+    WTF_CSRF_ENABLED = False

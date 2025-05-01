@@ -1,10 +1,23 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>OLDSCHOOL - Home</title>
-</head>
-<body>
-    <h1>Welcome to OLDSCHOOL Fashion</h1>
-    <p>This is the base homepage.</p>
-</body>
-</html>
+{% extends 'layout.html' %}
+
+{% block content %}
+<section class="products-section">
+    <h2 class="page-title">All Products</h2>
+    <div class="products-grid">
+        {% for product in products %}
+        <div class="product-card">
+            <a href="{{ url_for('main.product_detail', product_id=product.id) }}" class="product-link">
+                <div class="product-image-container">
+                    <img src="{{ url_for('static', filename='uploads/products/' ~ product.image) }}" 
+                        alt="{{ product.name }}" class="product-image" />
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">{{ product.name }}</h3>
+                    <p class="product-price">${{ "%.2f"|format(product.price) }}</p>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
