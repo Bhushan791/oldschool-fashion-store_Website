@@ -413,3 +413,5 @@ def update_order_contact(order_id, contact):
     cursor.execute("UPDATE orders SET contact=%s WHERE id=%s", (contact, order_id))
     connection.commit()
     cursor.close()
+
+
