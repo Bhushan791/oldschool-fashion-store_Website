@@ -1,6 +1,20 @@
 {% extends 'layout.html' %}
 
+{% block head %}
+<!-- Google Fonts: Playfair Display -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
+<!-- Sparkles Animation Containers -->
+<div class="sparkle s1"></div>
+<div class="sparkle s2"></div>
+<div class="sparkle s3"></div>
+<div class="sparkle s4"></div>
+<div class="sparkle s5"></div>
+
 <section class="products-section">
     <h2 class="page-title">All Products</h2>
     <div class="products-grid">
@@ -9,7 +23,7 @@
             <a href="{{ url_for('main.product_detail', product_id=product.id) }}" class="product-link">
                 <div class="product-image-container">
                     <img src="{{ url_for('static', filename='uploads/products/' ~ product.image) }}" 
-                        alt="{{ product.name }}" class="product-image" />
+                         alt="{{ product.name }}" class="product-image" />
                 </div>
                 <div class="product-info">
                     <h3 class="product-name">{{ product.name }}</h3>
@@ -21,3 +35,7 @@
     </div>
 </section>
 {% endblock %}
+
+
+
+

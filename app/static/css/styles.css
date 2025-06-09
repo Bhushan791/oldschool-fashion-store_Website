@@ -1,0 +1,1163 @@
+/* =========================================
+   OLDSCHOOL Fashion - Premium CSS Stylesheet
+   A timeless fashion experience with modern twist
+   ========================================= */
+
+/* =========================================
+   TABLE OF CONTENTS:
+   1. CSS Reset & Base Styles
+   2. Color Variables
+   3. Typography
+   4. Layout & Container
+   5. Header & Navigation
+   6. Footer
+   7. Buttons & Links
+   8. Forms & Inputs
+   9. Product Grid & Cards
+   10. Product Detail Page
+   11. Cart & Checkout
+   12. Profile Page
+   13. Orders Page
+   14. Admin Panel
+   15. Authentication Pages
+   16. Responsive Design
+   17. Animations & Transitions
+   18. Utility Classes
+   ========================================= */
+
+/* =========================================
+   1. CSS Reset & Base Styles
+   ========================================= */
+   *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 62.5%; /* For easy rem calculations - 1rem = 10px */
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.6rem;
+    line-height: 1.6;
+    color: #333;
+    background-color: #FFFDF8;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+}
+
+/* =========================================
+   2. Color Variables
+   ========================================= */
+:root {
+    /* Primary Palette */
+    --primary: #FEEF94;          /* Main brand yellow */
+    --primary-light: #FFF6C2;    /* Lighter shade */
+    --primary-dark: #E5D87E;     /* Darker shade */
+    
+    /* Neutrals */
+    --neutral-darkest: #292826;  /* Almost black */
+    --neutral-dark: #4A4845;     /* Dark gray */
+    --neutral-medium: #8C8A85;   /* Medium gray */
+    --neutral-light: #D1CFC9;    /* Light gray */
+    --neutral-lightest: #F8F7F4; /* Almost white */
+    
+    /* Accents */
+    --accent-peach: #F8D0B0;     /* Soft peach */
+    --accent-sage: #D2DEBD;      /* Sage green */
+    --accent-lavender: #E1D5E7;  /* Soft lavender */
+    --accent-cream: #F9F3E3;     /* Cream */
+    
+    /* Functional */
+    --success: #7BAE7F;          /* Success state */
+    --warning: #E6C974;          /* Warning state */
+    --danger: #D97862;           /* Error/danger state */
+    --info: #88A9C3;             /* Information state */
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 4px rgba(41, 40, 38, 0.05);
+    --shadow-md: 0 4px 8px rgba(41, 40, 38, 0.1);
+    --shadow-lg: 0 8px 16px rgba(41, 40, 38, 0.12);
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-medium: 0.3s ease;
+    --transition-slow: 0.5s ease;
+}
+
+/* =========================================
+   3. Typography
+   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    color: var(--neutral-darkest);
+}
+
+h1 {
+    font-size: 4.8rem;
+    letter-spacing: -0.02em;
+}
+
+h2 {
+    font-size: 3.6rem;
+    letter-spacing: -0.01em;
+}
+
+h3 {
+    font-size: 2.8rem;
+}
+
+h4 {
+    font-size: 2.4rem;
+}
+
+h5 {
+    font-size: 2rem;
+}
+
+h6 {
+    font-size: 1.8rem;
+}
+
+p {
+    margin-bottom: 1.5rem;
+}
+
+.page-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 800;
+    text-align: center;
+    margin: 4rem 0 3rem;
+    color: var(--neutral-darkest);
+    position: relative;
+    padding-bottom: 1.5rem;
+}
+
+.page-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8rem;
+    height: 0.3rem;
+    background-color: var(--primary);
+}
+
+/* =========================================
+   4. Layout & Container
+   ========================================= */
+.container {
+    width: 100%;
+    max-width: 120rem;
+    margin: 0 auto;
+    padding: 0 2rem;
+    flex: 1;
+}
+
+main {
+    padding: 2rem 0 6rem;
+    flex: 1;
+}
+
+section {
+    margin-bottom: 6rem;
+}
+
+/* =========================================
+   5. Header & Navigation
+   ========================================= */
+.main-header {
+    background-color: var(--primary);
+    padding: 1.5rem 2rem;
+    box-shadow: var(--shadow-md);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.site-logo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 3.2rem;
+    margin: 0;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.site-logo a {
+    color: var(--neutral-darkest);
+    text-decoration: none;
+    display: block;
+    transition: transform var(--transition-medium);
+}
+
+.site-logo a:hover {
+    transform: scale(1.05);
+}
+
+.main-nav {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-link {
+    color: var(--neutral-darkest);
+    font-size: 1.6rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 0.4rem;
+    transition: all var(--transition-medium);
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -0.2rem;
+    left: 1rem;
+    right: 1rem;
+    height: 0.2rem;
+    background-color: var(--neutral-darkest);
+    opacity: 0;
+    transform: scaleX(0.5);
+    transition: all var(--transition-medium);
+}
+
+.nav-link:hover::after {
+    opacity: 1;
+    transform: scaleX(1);
+}
+
+.nav-link:hover {
+    color: var(--neutral-darkest);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Mobile navigation */
+@media (max-width: 768px) {
+    .main-header {
+        flex-direction: column;
+        padding: 1.5rem;
+    }
+    
+    .site-logo {
+        margin-bottom: 1.5rem;
+    }
+    
+    .main-nav {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    
+    .nav-link {
+        font-size: 1.4rem;
+        padding: 0.8rem;
+    }
+}
+
+/* =========================================
+   6. Footer
+   ========================================= */
+.main-footer {
+    background-color: var(--neutral-darkest);
+    color: var(--neutral-lightest);
+    padding: 3rem 2rem;
+    text-align: center;
+    margin-top: auto;
+}
+
+.main-footer p {
+    margin: 0;
+    font-size: 1.4rem;
+    letter-spacing: 0.1em;
+}
+
+/* =========================================
+   7. Buttons & Links
+   ========================================= */
+.btn {
+    display: inline-block;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 1.6rem;
+    line-height: 1;
+    text-align: center;
+    cursor: pointer;
+    padding: 1.2rem 2.4rem;
+    border-radius: 0.4rem;
+    border: none;
+    transition: all var(--transition-medium);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: var(--neutral-darkest);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+}
+
+.btn-secondary {
+    background-color: var(--neutral-lightest);
+    color: var(--neutral-darkest);
+    border: 1px solid var(--neutral-light);
+}
+
+.btn-secondary:hover {
+    background-color: var(--neutral-light);
+}
+
+.btn-danger {
+    background-color: var(--danger);
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #c25e4a;
+}
+
+.btn-small {
+    font-size: 1.4rem;
+    padding: 0.8rem 1.6rem;
+}
+
+.btn-edit {
+    background-color: var(--info);
+    color: white;
+}
+
+.btn-edit:hover {
+    background-color: #7596ac;
+}
+
+.link-secondary {
+    color: var(--neutral-dark);
+    text-decoration: underline;
+    transition: color var(--transition-medium);
+}
+
+.link-secondary:hover {
+    color: var(--neutral-darkest);
+}
+
+/* =========================================
+   8. Forms & Inputs
+   ========================================= */
+.form-group {
+    margin-bottom: 2rem;
+}
+
+.form-label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+    color: var(--neutral-dark);
+}
+
+.form-input,
+.form-textarea,
+.form-file-input,
+.form-select {
+    width: 100%;
+    padding: 1.2rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.6rem;
+    border: 1px solid var(--neutral-light);
+    border-radius: 0.4rem;
+    background-color: white;
+    transition: border-color var(--transition-medium), box-shadow var(--transition-medium);
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(254, 239, 148, 0.3);
+}
+
+.form-textarea {
+    min-height: 12rem;
+    resize: vertical;
+}
+
+.form-file-input {
+    padding: 1rem;
+    background-color: var(--neutral-lightest);
+}
+
+.address-input {
+    min-height: 10rem;
+}
+
+/* Password visibility toggle */
+.password-container {
+    position: relative;
+}
+
+.password-input-group {
+    position: relative;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 1.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 1.8rem;
+    color: var(--neutral-medium);
+    transition: color var(--transition-fast);
+}
+
+.password-toggle:hover {
+    color: var(--neutral-dark);
+}
+
+/* Auth form styling */
+.auth-form-container {
+    max-width: 50rem;
+    margin: 0 auto;
+    padding: 3rem;
+    background-color: white;
+    border-radius: 0.8rem;
+    box-shadow: var(--shadow-md);
+}
+
+.auth-form {
+    margin-bottom: 2rem;
+}
+
+.auth-links {
+    text-align: center;
+}
+
+/* Checkout form */
+.checkout-form {
+    max-width: 70rem;
+    margin: 0 auto 3rem;
+    padding: 3rem;
+    background-color: white;
+    border-radius: 0.8rem;
+    box-shadow: var(--shadow-md);
+}
+
+.checkout-actions {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+/* Payment method styling */
+.payment-method {
+    margin-top: 3rem;
+}
+
+.payment-input {
+    margin-bottom: 1rem;
+}
+
+.payment-info {
+    font-size: 1.4rem;
+    color: var(--neutral-medium);
+    font-style: italic;
+}
+
+/* Confirm order checkbox */
+.confirm-order {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.confirm-checkbox {
+    width: 2rem;
+    height: 2rem;
+    margin-top: 0.2rem;
+}
+
+.confirm-label {
+    margin-bottom: 0;
+    flex: 1;
+}
+
+.cancellation-policy {
+    margin: 1.5rem 0;
+    padding: 1.2rem;
+    background-color: var(--neutral-lightest);
+    border-radius: 0.4rem;
+    font-size: 1.4rem;
+}
+
+.cancellation-policy p {
+    margin: 0;
+    color: var(--neutral-dark);
+}
+
+/* Form error messages */
+.error {
+    display: block;
+    color: var(--danger);
+    font-size: 1.4rem;
+    margin-top: 0.5rem;
+}
+
+/* =========================================
+   9. Product Grid & Cards
+   ========================================= */
+.products-section {
+    margin-bottom: 6rem;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(28rem, 1fr));
+    gap: 3rem;
+}
+
+.product-card {
+    background: white;
+    border-radius: 0.8rem;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: transform var(--transition-medium), box-shadow var(--transition-medium);
+}
+
+.product-card:hover {
+    transform: translateY(-0.5rem);
+    box-shadow: var(--shadow-lg);
+}
+
+.product-link {
+    display: block;
+    height: 100%;
+}
+
+.product-image-container {
+    position: relative;
+    overflow: hidden;
+    height: 30rem;
+    background-color: var(--neutral-lightest);
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.05);
+}
+
+.product-info {
+    padding: 2rem;
+}
+
+.product-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.product-price {
+    font-weight: 600;
+    font-size: 1.8rem;
+    color: var(--neutral-dark);
+}
+
+/* =========================================
+   10. Product Detail Page
+   ========================================= */
+.product-detail {
+    margin: 0 auto;
+    max-width: 120rem;
+}
+
+.product-content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4rem;
+    margin-bottom: 4rem;
+}
+
+.product-detail-image {
+    width: 100%;
+    height: auto;
+    border-radius: 0.8rem;
+    box-shadow: var(--shadow-md);
+}
+
+.product-description {
+    font-size: 1.8rem;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+}
+
+.add-to-cart-form {
+    display: flex;
+    align-items: flex-end;
+    gap: 1.5rem;
+}
+
+.quantity-input {
+    width: 8rem;
+    text-align: center;
+    padding: 1.2rem;
+    border: 1px solid var(--neutral-light);
+    border-radius: 0.4rem;
+    font-size: 1.6rem;
+}
+
+/* =========================================
+   11. Cart & Checkout
+   ========================================= */
+.checkout-container {
+    max-width: 90rem;
+    margin: 0 auto;
+}
+
+.order-summary {
+    background-color: white;
+    border-radius: 0.8rem;
+    padding: 2.5rem;
+    margin-bottom: 3rem;
+    box-shadow: var(--shadow-md);
+}
+
+.order-summary h3 {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--neutral-light);
+}
+
+.summary-items {
+    margin-bottom: 2rem;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    font-size: 1.6rem;
+}
+
+.summary-subtotal,
+.summary-delivery,
+.summary-total {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+}
+
+.summary-subtotal,
+.summary-delivery {
+    border-top: 1px solid var(--neutral-light);
+}
+
+.summary-total {
+    border-top: 2px solid var(--neutral-dark);
+    font-weight: 700;
+    font-size: 1.8rem;
+    margin-top: 1rem;
+}
+
+/* =========================================
+   12. Profile Page
+   ========================================= */
+.profile-container {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 3rem;
+    background-color: white;
+    border-radius: 0.8rem;
+    box-shadow: var(--shadow-md);
+}
+
+.profile-heading {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.user-box {
+    padding: 2rem;
+    background-color: var(--neutral-lightest);
+    border-radius: 0.8rem;
+    margin-bottom: 3rem;
+}
+
+.usermail {
+    margin-bottom: 1rem; 
+    font-size: 1.8rem;
+}
+
+.welcome-message {
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--neutral-dark);
+    margin-top: 1.5rem;
+}
+
+.brand-message {
+    padding: 2.5rem;
+    background-color: var(--primary-light);
+    border-radius: 0.8rem;
+    font-size: 1.8rem;
+    line-height: 1.7;
+}
+
+.brand-message p {
+    margin-bottom: 2rem;
+}
+
+.shop-tag {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 2.2rem;
+    text-align: center;
+    margin-top: 3rem;
+    margin-bottom: 0;
+}
+
+/* =========================================
+   13. Orders Page
+   ========================================= */
+.orders-container {
+    max-width: 100rem;
+    margin: 0 auto;
+}
+
+.orders-list {
+    display: grid;
+    gap: 3rem;
+}
+
+.order-card {
+    background-color: white;
+    border-radius: 0.8rem;
+    padding: 2.5rem;
+    box-shadow: var(--shadow-md);
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--neutral-light);
+}
+
+.order-title {
+    margin: 0;
+    font-size: 2.2rem;
+}
+
+.order-status {
+    font-weight: normal;
+    color: var(--neutral-medium);
+}
+
+.order-date {
+    font-size: 1.4rem;
+    color: var(--neutral-medium);
+}
+
+.order-details {
+    padding: 1.5rem 0;
+    margin-bottom: 2rem;
+}
+
+.order-info {
+    margin-bottom: 1rem;
+}
+
+.order-total {
+    font-weight: 600;
+    font-size: 1.8rem;
+    margin-top: 1.5rem;
+}
+
+.items-title {
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+}
+
+.items-list {
+    background-color: var(--neutral-lightest);
+    padding: 1.5rem;
+    border-radius: 0.4rem;
+}
+
+.order-item {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--neutral-light);
+}
+
+.order-item:last-child {
+    border-bottom: none;
+}
+
+.order-actions {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.cancel-form {
+    display: inline-block;
+}
+
+.no-orders-message {
+    font-size: 1.8rem;
+    text-align: center;
+    padding: 5rem 0;
+    color: var(--neutral-medium);
+    background-color: white;
+    border-radius: 0.8rem;
+    box-shadow: var(--shadow-md);
+}
+
+/* =========================================
+   14. Admin Panel
+   ========================================= */
+.admin-panel {
+    margin: 0 auto;
+    max-width: 120rem;
+}
+
+.admin-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.table-container {
+    overflow-x: auto;
+    margin-bottom: 3rem;
+    box-shadow: var(--shadow-md);
+    border-radius: 0.8rem;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    overflow: hidden;
+}
+
+.admin-table th,
+.admin-table td {
+    padding: 1.5rem;
+    text-align: left;
+    border-bottom: 1px solid var(--neutral-light);
+}
+
+.admin-table th {
+    background-color: var(--primary-light);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    letter-spacing: 0.1em;
+}
+
+.admin-table tr:last-child td {
+    border-bottom: none;
+}
+
+.admin-product-image {
+    width: 8rem;
+    height: 8rem;
+    object-fit: cover;
+    border-radius: 0.4rem;
+}
+
+.no-image {
+    display: block;
+    width: 8rem;
+    height: 8rem;
+    line-height: 8rem;
+    text-align: center;
+    background-color: var(--neutral-lightest);
+    border-radius: 0.4rem;
+    color: var(--neutral-medium);
+}
+
+.product-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.admin-footer {
+    margin-top: 3rem;
+    text-align: center;
+}
+
+/* Admin orders */
+.admin-orders {
+    margin: 0 auto;
+    max-width: 120rem;
+}
+
+.status-form {
+    display: flex;
+    gap: 1rem;
+}
+
+.status-select {
+    padding: 0.8rem;
+    border: 1px solid var(--neutral-light);
+    border-radius: 0.4rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.4rem;
+}
+
+/* Admin Form */
+.admin-form-container {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 3rem;
+    background-color: white;
+    border-radius: 0.8rem;
+    box-shadow: var(--shadow-md);
+}
+
+.admin-form {
+    margin-bottom: 3rem;
+}
+
+/* =========================================
+   15. Authentication Pages
+   ========================================= */
+/* Most styles are covered in the Forms section already */
+
+/* =========================================
+   16. Responsive Design
+   ========================================= */
+
+/* Medium screens (tablets) */
+@media (max-width: 992px) {
+    html {
+        font-size: 60%;
+    }
+    
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(24rem, 1fr));
+        gap: 2.5rem;
+    }
+    
+    .product-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .product-detail-image {
+        max-height: 50rem;
+        object-fit: contain;
+    }
+}
+
+/* Small screens (mobile) */
+@media (max-width: 768px) {
+    html {
+        font-size: 58%;
+    }
+    
+    .page-title {
+        font-size: 3rem;
+        margin: 3rem 0 2.5rem;
+    }
+    
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+        gap: 2rem;
+    }
+    
+    .product-image-container {
+        height: 25rem;
+    }
+    
+    .auth-form-container,
+    .profile-container,
+    .admin-form-container {
+        padding: 2rem;
+    }
+    
+    .order-header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .order-date {
+        margin-top: 0.5rem;
+    }
+    
+    .admin-actions {
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: stretch;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+    html {
+        font-size: 55%;
+    }
+    
+    .main-header {
+        padding: 1.2rem;
+    }
+    
+    .site-logo {
+        font-size: 2.8rem;
+    }
+    
+    .nav-link {
+        padding: 0.8rem;
+        font-size: 1.3rem;
+    }
+    
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .product-image-container {
+        height: 30rem;
+    }
+    
+    .admin-table th, 
+    .admin-table td {
+        padding: 1rem;
+    }
+}
+
+/* =========================================
+   17. Animations & Transitions
+   ========================================= */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(2rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -100% 0;
+    }
+    100% {
+        background-position: 100% 0;
+    }
+}
+
+/* Apply animations */
+.page-title,
+.products-grid,
+.product-card,
+.auth-form-container,
+.profile-container,
+.order-card,
+.admin-form-container {
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+.site-logo a:hover {
+    animation: pulse 1s infinite;
+}
+
+.btn-primary:hover {
+    animation: shimmer 1.5s infinite linear;
+    background-size: 200% 100%;
+    background-image: linear-gradient(
+        90deg,
+        var(--primary) 0%,
+        var(--primary-light) 50%,
+        var(--primary) 100%
+    );
+}
+
+/* =========================================
+   18. Utility Classes
+   ========================================= */
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.font-italic {
+    font-style: italic;
+}
+
+.font-bold {
+    font-weight: 700;
+}

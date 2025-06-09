@@ -1,35 +1,38 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<section class="admin-form-container">
-    <h2 class="page-title">{{ action }} Product</h2>
-
-    <form method="POST" enctype="multipart/form-data" class="admin-form">
-        {{ form.hidden_tag() }}
-
-        <div class="form-group">
-            {{ form.name.label(class="form-label") }}
-            {{ form.name(size=40, class="form-input") }}
-        </div>
-        <div class="form-group">
-            {{ form.description.label(class="form-label") }}
-            {{ form.description(size=60, class="form-input form-textarea") }}
-        </div>
-        <div class="form-group">
-            {{ form.price.label(class="form-label") }}
-            {{ form.price(step="0.01", class="form-input") }}
-        </div>
-        <div class="form-group">
-            {{ form.image.label(class="form-label") }}
-            {{ form.image(class="form-file-input") }}
-        </div>
-        <div class="form-group">
-            {{ form.submit(class="btn btn-primary") }}
-        </div>
-    </form>
-
-    <div class="admin-footer">
-        <a href="{{ url_for('admin.admin_panel') }}" class="btn btn-secondary">Back to Admin Panel</a>
+<h2>{{ action }} Product</h2>
+<form method="POST" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    
+    <div class="form-group">
+        {{ form.name.label }}
+        {{ form.name(class="form-control") }}
     </div>
-</section>
+    
+    <div class="form-group">
+        {{ form.description.label }}
+        {{ form.description(class="form-control", rows=4) }}
+    </div>
+    
+    <div class="form-group">
+        {{ form.price.label }}
+        {{ form.price(class="form-control") }}
+    </div>
+    
+    <div class="form-group">
+        <label>Product Images</label>
+        <input type="file" name="images" multiple accept="image/*">
+        {% if product %}
+        <div class="existing-images">
+            {% for image in product.images %}
+            <img src="{{ url_for('static', filename='uploads/products/' ~ image) }}" 
+                 class="existing-thumbnail">
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Save Product</button>
+</form>
 {% endblock %}

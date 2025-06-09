@@ -1,5 +1,6 @@
 import os
 
+
 class Config:
     SECRET_KEY = os.getenv('SECRET_KEY', 'devkey')
     MYSQL_HOST = os.getenv('MYSQL_HOST')
